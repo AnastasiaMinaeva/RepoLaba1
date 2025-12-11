@@ -60,20 +60,34 @@ public class ServiceProduct {
         return false;
     }
 
-        public boolean checkAllWeighted (ProductBatch batch)
-        {
-            Weightable[] product = batch.getBatchProduct();
-            for (int i = 0; i < product.length; i++) {
-                Weightable item = product[i];
-                if (item instanceof PackingPieceProduct) {
+    public boolean checkAllWeighted(ProductBatch batch) {
+        Weightable[] contents = batch.getBatchProduct();
+        for (int i = 0; i < contents.length; i++) {
+            Weightable item = contents[i];
+            if (item instanceof PackingPieceProduct) {
+                return false;
+            } else if (item instanceof PackagingSetProduct) {
+                if (!containsWeightProduct((PackagingSetProduct) item)) {
                     return false;
-                } else if (item instanceof PackagingSetProduct) {
-                    if (!checkAllWeighted((ProductBatch) item)) {
-                        return false;
-                    }
                 }
-
             }
-            return true;
         }
+        return true;
     }
+
+    //Вспомогательный метод для определения все ли весовые товары
+    private boolean containsWeightProduct(PackagingSetProduct set) {
+        Weightable[] contents = set.getSets();
+        for (int i = 0; i < contents.length; i++) {
+            Weightable item = contents[i];
+            if (item instanceof PackingPieceProduct) {
+                return false;
+            } else if (item instanceof PackagingSetProduct) {
+                if (containsWeightProduct((PackagingSetProduct) item)) {
+                    return true;
+                }
+            }
+        }
+        return true;
+    }
+}

@@ -1,4 +1,4 @@
-public class BeginStringFilter
+public class BeginStringFilter implements Filter
 {
     public final String PATTERN;
 
