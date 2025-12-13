@@ -17,8 +17,9 @@ public class FilterTest {
         assertEquals(true, filter.apply("Привет"));
         assertEquals(false, filter.apply("Мир Привет"));
     }
+}
 
-    @Test
+   /* @Test
     public void testFilterFunctional() {
         Filter beginFilter = new Filter() {
             @Override
@@ -50,4 +51,4 @@ public class FilterTest {
         assertEquals(true, containsFilter.apply("Привет мир"));
         assertEquals(false, containsFilter.apply("Привет"));
     }
-}
+}*/

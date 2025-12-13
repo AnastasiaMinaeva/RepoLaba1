@@ -26,7 +26,7 @@ public class PackagingTest {
     public void TestToString()
     {
         Packaging prod = new Packaging("Простоквашино", 15.6);
-        String expectedResult = "Product{name=Простоквашино'massKg=15.6'}";
+        String expectedResult = "Product{name=Простоквашино'massKgPerPackaging=15.6'}";
         assertEquals(expectedResult, prod.toString());
 
     }
